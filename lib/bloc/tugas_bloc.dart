@@ -41,7 +41,13 @@ class TugasBloc {
     print("Body : $body");
     var response = await Api().post(apiUrl, body);
     var jsonObj = json.decode(response.body);
-    return jsonObj['result'];
+
+    // Periksa status respons dan kembalikan hasil yang sesuai
+    if (jsonObj['status'] == 'success') {
+      return true; // Berhasil mengubah tugas
+    } else {
+      return false; // Gagal mengubah tugas
+    }
   }
 
   static Future<bool> deleteTugas({int? id}) async {
