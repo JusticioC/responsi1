@@ -47,7 +47,7 @@ class TugasBloc {
   static Future<bool> deleteTugas({int? id}) async {
     String apiUrl = ApiUrl.deleteTugas(id!);
 
-    var response = await Api().post(apiUrl);
+    var response = await Api().delete(apiUrl);
     var jsonObj = json.decode(response.body);
     return (jsonObj as Map<String, dynamic>)['result'];
   }
